@@ -1,0 +1,6 @@
+<div class="subcription-info text-center">
+    <%= form_tag :result, :method => :post, :class => "subscribe_form" do %>
+      <%= text_field_tag :username, nil, :placeholder => "Enter Github username", :class => "email", :required => "" %>
+      <%= submit_tag "Investigate!", :class => "subscribe" %>
+    <% end %>
+</div>

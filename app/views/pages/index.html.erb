@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="logo text-center">
+            <%= link_to "https://github.com/amitsaxena", :target => "_blank" do %>
+              <%= image_tag "octocat.png", :alt => "Github", :width => "100" %>
+            <% end %>
+            <h2>Want to know someone's favourite programming lauguage?</h2>
+        </div>
+
+
+        <h2 class="subs-title text-center">Enter github username below</h2>
+        <%= render :partial => "pages/form" %>
+    </div>
+</div>

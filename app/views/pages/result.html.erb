@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <% if !@user.blank? %>
+          <div class="logo text-center">
+              <%= link_to @user[:html_url], :target => "_blank" do %>
+                <%= image_tag @user[:avatar_url], :alt => @user[:login], :width => "100" %>
+              <% end %>
+              <h2>Looks like <%= link_to "#{@user[:login]}", @user[:html_url], :target => "_blank" %> <%= "(#{@user[:name]})" if !@user[:name].blank? %> is most interested in <%= google_url(@fav_languages[0]) %>, and also seems to like <%= raw(link_sentence(@fav_languages[1..-1])) %>!
+              </h2>
+          </div>
+
+          <h2 class="subs-title text-center">Still Curious? Enter another github username below</h2>
+          <%= render :partial => "pages/form" %>
+        <% else %>
+          <div class="logo text-center">
+              <%= link_to "https://github.com/amitsaxena", :target => "_blank" do %>
+                <%= image_tag "octocat.png", :alt => "Github", :width => "100" %>
+              <% end %>
+              <h2>Oops! Unable to find that user on github.</h2>
+              <% if !@suggestions.blank? %>
+                <h2>You might be investigating someone below:</h2>
+                <ul class="list-group">
+                    <% @suggestions.each do |user| %>
+                      <li class="list-group-item">
+                          <%= link_to user[:login], user[:html_url], :target => "_blank" %>
+                      </li>
+                    <% end %>
+                </ul>
+              <% end %>
+              <h2 class="subs-title text-center">Still Curious? Enter another github username below</h2>
+              <%= render :partial => "pages/form" %>
+          </div>
+        <% end %>
+    </div>
+</div>
