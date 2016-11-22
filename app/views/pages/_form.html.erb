@@ -1,6 +1,14 @@
 <div class="subcription-info text-center">
     <%= form_tag :result, :method => :post, :class => "subscribe_form" do %>
       <%= text_field_tag :username, nil, :placeholder => "Enter Github username", :class => "email", :required => "" %>
-      <%= submit_tag "Investigate!", :class => "subscribe" %>
+      <%= submit_tag "Investigate!", :class => "subscribe", :id => "submit_button" %>
     <% end %>
 </div>
+
+<script language="javascript" type="text/javascript">
+$("form").submit(function() {
+  $('#submit_button').val('Processing...');
+  $('#submit_button').prop('disabled', true);
+  return true;
+});
+</script>
