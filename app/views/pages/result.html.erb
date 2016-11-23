@@ -5,8 +5,11 @@
               <%= link_to @user[:html_url], :target => "_blank" do %>
                 <%= image_tag @user[:avatar_url], :alt => @user[:login], :width => "100" %>
               <% end %>
-              <h2>Looks like <%= link_to "#{@user[:login]}", @user[:html_url], :target => "_blank" %> <%= "(#{@user[:name]})" if !@user[:name].blank? %> is most interested in <%= google_url(@fav_languages[0]) %>, and also seems to like <%= raw(link_sentence(@fav_languages[1..-1])) %>!
-              </h2>
+              <% if @fav_languages.blank? %>
+                <h2>Looks like <%= link_to "#{@user[:login]}", @user[:html_url], :target => "_blank" %> <%= "(#{@user[:name]})" if !@user[:name].blank? %> is not into programming yet! No favourites!</h2>  
+              <% else %>
+                <h2>Looks like <%= link_to "#{@user[:login]}", @user[:html_url], :target => "_blank" %> <%= "(#{@user[:name]})" if !@user[:name].blank? %> is most interested in <%= google_url(@fav_languages[0]) %>, and also seems to like <%= raw(link_sentence(@fav_languages[1..-1])) %>!</h2>
+              <% end %>
           </div>
 
           <h2 class="subs-title text-center">Still Curious? Enter another github username below</h2>

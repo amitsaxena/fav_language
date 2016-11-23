@@ -1,26 +1,30 @@
 class GithubApi
   
-  def self.find_user(username)
+  def initialize
+    @client = Octokit::Client.new(:client_id => ENV["GITHUB_CLIENT_ID"], :client_secret => ENV["GITHUB_CLIENT_SECRET"])
+  end
+  
+  def find_user(username)
     begin
-      Octokit.user(username)
+      @client.user(username)
     rescue Octokit::NotFound
     end
   end
   
-  def self.username_suggestions(username)
+  def username_suggestions(username)
     begin
-      users = Octokit.search_users(username)
+      users = @client.search_users(username)
       return users[:items][0..4]
     rescue
     end
   end
   
-  def self.fav_language(user)
+  def fav_language(user)
     Octokit.auto_paginate = true
     repos = user.rels[:repos].get(:type => :all).data
     return nil if repos.blank?
     
-    language_data = repos.map{|repo| Octokit.languages(:owner => repo[:owner][:login], :repo => repo[:name])}
+    language_data = repos.map{|repo| @client.languages(:owner => repo[:owner][:login], :repo => repo[:name])}
     language_sum = {}
     language_data.each do |data|
       data.each do |lang, bytes|

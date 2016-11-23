@@ -5,11 +5,12 @@ class PagesController < ApplicationController
   def result
     begin
       return if params[:username].blank?
-      @user = GithubApi.find_user(params[:username])
+      github = GithubApi.new
+      @user = github.find_user(params[:username])
       if @user.blank?
-        @suggestions = GithubApi.username_suggestions(params[:username])
+        @suggestions = github.username_suggestions(params[:username])
       else
-        @fav_languages = GithubApi.fav_language(@user)
+        @fav_languages = github.fav_language(@user)
       end
     rescue Exception => e
       @error = e.message
