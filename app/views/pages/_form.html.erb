@@ -4,11 +4,13 @@
       <%= submit_tag "Investigate!", :class => "subscribe", :id => "submit_button" %>
     <% end %>
 </div>
+ <div class="loader"></div>
 
 <script language="javascript" type="text/javascript">
 $("form").submit(function() {
   $('#submit_button').val('Processing...');
   $('#submit_button').prop('disabled', true);
+  $('.loader').show();
   return true;
 });
 </script>
