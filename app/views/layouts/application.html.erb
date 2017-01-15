@@ -2,8 +2,10 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Want to know someone's favourite programming language?</title>
+    <title>Know a github user's favourite programming language</title>
     <%= csrf_meta_tags %>
+    <meta property="og:title" content="Know a github user's favourite programming language" />
+    <meta property="og:image" content="<%= image_url "bg_image.jpg" %>" />
 
     <link href='https://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,400italic,300italic,300|Raleway:300,400,600' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
